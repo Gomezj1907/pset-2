@@ -44,7 +44,28 @@ location <- location |>
 
 
 
+ #### === Eliminar filas/columnas === ####
+
+# 4.1 Almacene en un obeto llamado identification_sub el subconjunto de observaciones del objeto
+# identification que pertenezcan a la industria manufacturera.
 
 
+identification_sub <- identification |>
+  
+
+
+
+# 4.2 Del objeto location seleccione solo las variables DIRECTORIO, SECUENCIA_P, 
+# SECUENCIA_ENCUESTA, # P3054, P469, COD_DEPTO, F_EXP
+# y guardelo en nuevo objeto llamado location_sub.
+
+
+
+
+
+
+# 4.3 Del objeto identification_sub, seleccione las variables DIRECTORIO, SECUENCIA_P, 
+# SECUENCIA_ENCUESTA, P35, P241, P3032_1, P3032_2 , P3032_3 , P3033 y P3034
+# y sobre escriba el objeto identification_sub
 
 
