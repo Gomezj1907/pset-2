@@ -6,11 +6,11 @@
 
 # Jorge Gomez - 201923526
 
+# Clean environment
 
-# 2.1 Importar
-# Importe las bases de datos Módulo de sitio o ubicación en un objeto llamdo 
-# location y Módulo de # identificación en un objeto llamado identification
+rm(list = ls())
 
+# Cargo las librerias
 require(pacman)
 p_load(tidyverse, rio, xml2, data.table,
        knitr, kableExtra, skimr) 
@@ -18,10 +18,16 @@ p_load(tidyverse, rio, xml2, data.table,
 
  #### === Punto 1: importacion === ####
 
-location <- import("input/Módulo de sitio o ubicación.dta") 
-identification <- import("input/Módulo de identificación.dta")
+location <- as.data.frame(import("input/Módulo de sitio o ubicación.dta")) 
+identification <- as.data.frame(import("input/Módulo de identificación.dta"))  
 
-#### === Punto 2: Creacion de Variable === ####
+ #### === Punto 2: Exportacion === ####
+
+ export(location, "output/location.rds") 
+ export(identification, "output/identification.rds")
+
+
+ #### === Punto 3: Creacion de Variable === ####
 
 # Agricultura cuando sea
 # igual a 1, Industria manufacturera cuando sea igual a 2, comercio cuando sea igual a 3 y
@@ -35,7 +41,6 @@ identification <- identification |>
                                    GRUPOS4 == "04" ~ "Servicios"))
 
 
-
 # 3.2. Sobre el objeto location, genere una variable llamada local, que sea igual a 1 
 # si la variable P3053 es igual a 6 o 7
 
@@ -43,8 +48,7 @@ location <- location |>
   mutate(local = ifelse(P3053 %in% c(6,7), 1,0))
 
 
-
- #### === Eliminar filas/columnas === ####
+ #### === Punto 4: Eliminar filas/columnas === ####
 
 # 4.1 Almacene en un obeto llamado identification_sub el subconjunto de observaciones del objeto
 # identification que pertenezcan a la industria manufacturera.
@@ -58,7 +62,7 @@ identification_sub <- identification |>
 # SECUENCIA_ENCUESTA, # P3054, P469, COD_DEPTO, F_EXP
 # y guardelo en nuevo objeto llamado location_sub.
 
-loaction_sub <- location |> select(DIRECTORIO, SECUENCIA_P, 
+location_sub <- location |> select(DIRECTORIO, SECUENCIA_P, 
                                    SECUENCIA_ENCUESTA,  P3054, 
                                    P469, COD_DEPTO, F_EXP)
 
@@ -76,6 +80,7 @@ identification_sub <- identification_sub |>
 
 
 final_data <-  full_join(location_sub, identification_sub, 
-                         by = c("DIRECTORIO", "SECUENCIA_P", "SECUENCIA_ENCUESTA" ))
+                         by = c("DIRECTORIO", "SECUENCIA_P", "SECUENCIA_ENCUESTA"))
+
 
 
