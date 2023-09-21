@@ -1,10 +1,13 @@
-# Taller de R: Estadística y Programación
-
+## ************************ ##
+##  **** PROBLEM SET 1 **** ##
+## ************************ ##
 
 # Version.string R version 4.2.1 (2022-06-23 ucrt)
-# nickname       Funny-Looking Kid                
+# nickname       Funny-Looking Kid  
 
-# Jorge Gomez - 201923526
+# INTEGRANTES / Autores: 
+# + JORGE GOMEZ  201923526
+# + FELIPE CUADROS 201820965
 
 # Clean environment
 
