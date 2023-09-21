@@ -51,21 +51,31 @@ location <- location |>
 
 
 identification_sub <- identification |>
-  
-
+  filter(business_type == "Industria manufacturera")
 
 
 # 4.2 Del objeto location seleccione solo las variables DIRECTORIO, SECUENCIA_P, 
 # SECUENCIA_ENCUESTA, # P3054, P469, COD_DEPTO, F_EXP
 # y guardelo en nuevo objeto llamado location_sub.
 
-
-
-
-
+loaction_sub <- location |> select(DIRECTORIO, SECUENCIA_P, 
+                                   SECUENCIA_ENCUESTA,  P3054, 
+                                   P469, COD_DEPTO, F_EXP)
 
 # 4.3 Del objeto identification_sub, seleccione las variables DIRECTORIO, SECUENCIA_P, 
 # SECUENCIA_ENCUESTA, P35, P241, P3032_1, P3032_2 , P3032_3 , P3033 y P3034
 # y sobre escriba el objeto identification_sub
+
+identification_sub <- identification_sub |>
+  select(DIRECTORIO, SECUENCIA_P, SECUENCIA_ENCUESTA, P35, 
+         P241, P3032_1, P3032_2 , P3032_3 , P3033, P3034)
+
+# Combinar bases de datos
+# 5.1 Use las variables DIRECTORIO, SECUENCIA_P y SECUENCIA_ENCUESTA 
+# para unir en una única base de datos, los objetos location_sub y identification_sub.
+
+
+final_data <-  full_join(location_sub, identification_sub, 
+                         by = c("DIRECTORIO", "SECUENCIA_P", "SECUENCIA_ENCUESTA" ))
 
 
