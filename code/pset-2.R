@@ -57,7 +57,7 @@ location <- location |>
 # identification que pertenezcan a la industria manufacturera.
 
 
-identification_sub <- identification |>
+identification_sub <- identification |> 
   filter(business_type == "Industria manufacturera")
 
 
